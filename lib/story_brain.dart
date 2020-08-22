@@ -2,6 +2,7 @@ import 'package:destini_challenge_starting/story.dart';
 
 
 class StoryBrain {
+  int _storyNumber=0;
 
   List<Story> _storyData = [
     Story(
@@ -35,25 +36,19 @@ class StoryBrain {
         choice2: '')
   ];
 
-//TODO: Step 23 - Use the storyNumber property inside getStory(), getChoice1() and getChoice2() so that it gets the updated story and choices rather than always just the first (0th) one.
-
-
   String getStory(){
-    return _storyData[0].storyTitle;
+    return _storyData[_storyNumber].storyTitle;
   }
 
 
   String getChoice1(){
-    return _storyData[0].choice1;
+    return _storyData[_storyNumber].choice1;
   }
 
   String getChoice2(){
-    return _storyData[0].choice2;
+    return _storyData[_storyNumber].choice2;
   }
 
-int _storyNumber=0;
-
-  //TODO: Step 22 - In nextStory() if the storyNumber is equal to 3 or 4 or 5, that means it's the end of the game and it should call a method called restart() that resets the storyNumber to 0.
   void restart(){
     _storyNumber = 0;
   }
@@ -68,16 +63,19 @@ int _storyNumber=0;
     else if(_storyNumber == 1 && choiceNumber == 2)
     {
       this._storyNumber = 3;
-      restart();
+      //restart();
     }
     else if(_storyNumber == 2 && choiceNumber == 1)
     {
       this._storyNumber = 5;
-      restart();
+      //restart();
     }
     else if(_storyNumber == 2 && choiceNumber == 2)
     {
       this._storyNumber = 4;
+      //restart();
+    } else if (_storyNumber ==3 || _storyNumber == 5 || _storyNumber == 4)
+    {
       restart();
     }
   }
