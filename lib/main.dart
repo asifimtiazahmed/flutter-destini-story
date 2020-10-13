@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'story_brain.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 
 
@@ -8,6 +9,7 @@ void main() => runApp(Destini());
 class Destini extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: StoryPage(),
     );
@@ -49,19 +51,30 @@ class _StoryPageState extends State<StoryPage> {
               ),
               Expanded(
                 flex: 2,
-                child: FlatButton(
-                  onPressed: () {
-                    //Choice 1 made by user.
-                    setState(() {
-                      storyBrain.nextStory(1);
-                    });
-                  },
-                  color: Colors.red,
-                  child: Text(
+                child: Neumorphic(
+                  style: NeumorphicStyle(
+                      shape: NeumorphicShape.concave,
+                      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(15)),
+                      depth: 8,
+                      lightSource: LightSource.topLeft,
+                      shadowDarkColor: Colors.black,
+                      shadowLightColor: Colors.red,
+                      color: Colors.red
+                  ),
+                  child: FlatButton(
+                    onPressed: () {
+                      //Choice 1 made by user.
+                      setState(() {
+                        storyBrain.nextStory(1);
+                      });
+                    },
+                    color: Colors.red,
+                    child: Text(
 
-                    storyBrain.getChoice1(),
-                    style: TextStyle(
-                      fontSize: 20.0,
+                      storyBrain.getChoice1(),
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                 ),
@@ -73,18 +86,29 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 2,
                 child: Visibility(
                   visible: storyBrain.buttonShouldBeVisible(),
-                  child: FlatButton(
-                    onPressed: () {
-                      //Choice 2 made by user.
-                      setState(() {
-                        storyBrain.nextStory(2);
-                      });
-                    },
-                    color: Colors.blue,
-                    child: Text(
-                      storyBrain.getChoice2(),
-                      style: TextStyle(
-                        fontSize: 20.0,
+                  child: Neumorphic(
+                      style: NeumorphicStyle(
+                          shape: NeumorphicShape.concave,
+                          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(15)),
+                          depth: 8,
+                          lightSource: LightSource.topLeft,
+                          shadowDarkColor: Colors.black,
+                          shadowLightColor: Colors.lightBlueAccent,
+                          color: Colors.blueGrey
+                      ),
+                    child: FlatButton(
+                      onPressed: () {
+                        //Choice 2 made by user.
+                        setState(() {
+                          storyBrain.nextStory(2);
+                        });
+                      },
+                      color: Colors.blue,
+                      child: Text(
+                        storyBrain.getChoice2(),
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                   ),
